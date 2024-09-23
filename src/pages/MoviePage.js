@@ -4,7 +4,6 @@ import MovieCard from '../components/movie/MovieCard';
 import { fetcher } from '../config';
 import useDebounce from '../hooks/useDebounce';
 import ReactPaginate from 'react-paginate';
-import HandleRenderMovieCard from '../components/movie/HandleRenderMovieCard';
 const MoviePage = () => {
 
     const [pageCount, setPageCount] = useState(0);
@@ -42,7 +41,7 @@ const MoviePage = () => {
     return (
         <div className='p-10 page-container'>
             <div className='flex mb-10'>
-                <div className='flex-1'>  <input onChange={handleSearch} defaultValue={filter} className='outline-none bg-slate-800 p-4 w-full h-[50px] text-white' type="text" placeholder='Enter Your Film...' /></div>
+                <div className='flex-1'>  <input onChange={handleSearch}  className='outline-none bg-slate-800 p-4 w-full h-[50px] text-white' type="text" placeholder='Enter Your Film...' /></div>
                 <button className='p-3 text-white bg-primary'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -51,18 +50,11 @@ const MoviePage = () => {
             </div>
 
             {isLoading && <div className='w-10 h-10 mx-auto border-4 border-t-2 rounded-full border-primary border-t-transparent animate-spin'></div>}
-            
-            {/* fix component render */}
             <div className='grid grid-cols-4 gap-20'>
                 {movies.length > 0 && movies.map((item, index) => (
-                    <MovieCard key={item.id} item={item}></MovieCard>
+                    <MovieCard key={index} item={item}></MovieCard>
                 ))}
             </div>
-
-            {/* <HandleRenderMovieCard movies={movies} /> */}
-
-
-
             {/* loadmore */}
             <div className='flex items-center justify-center hidden text-white mt-14'>
                 <span onClick={() => {

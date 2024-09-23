@@ -9,13 +9,16 @@ import { apiKey, fetcher } from '../config';
 const MovieDetailsPage = () => {
     // const [movies, setMovies] = useState([])
     const { Idmovies } = useParams()
+    console.log(Idmovies);
+    
     const { data } = useSWR(`https://api.themoviedb.org/3/movie/${Idmovies}?api_key=${apiKey}`, fetcher)
     if(!data) return
     const movies = data || []
     // console.log(movies);
     const { backdrop_path, poster_path, title, genres,
         overview } = movies
-
+    console.log(movies);
+    
 
 
     return (
